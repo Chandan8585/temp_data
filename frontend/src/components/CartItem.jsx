@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext2';
 
 const CartItem = ({ item }) => {
   const { increaseQuantity, decreaseQuantity, isLoading } = useCart();
@@ -18,7 +18,7 @@ const CartItem = ({ item }) => {
           <div className="flex items-center space-x-1">
             <button 
               className={`w-5 h-5 bg-white rounded border border-gray-300 flex items-center justify-center ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={() => decreaseQuantity(item.id)}
+              onClick={() => decreaseQuantity(item._id)}
               disabled={isLoading}
             >
               {isLoading ? (

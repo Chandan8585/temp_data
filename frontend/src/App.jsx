@@ -4,11 +4,12 @@ import './App.css';
 import { Toaster } from './components/ui/sonner';
 import NotFound from './pages/Not-found';
 import { SidebarProvider } from './context/SidebarContext';
-import { CartProvider } from './context/CartContext';
+import { CartProvider } from './context/CartContext2';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
+import Sidebar from './components/Sidebar';
 
 function loadFontAwesome() {
   const script = document.createElement('script');
@@ -16,22 +17,6 @@ function loadFontAwesome() {
   script.crossOrigin = 'anonymous';
   document.body.appendChild(script);
 }
-
-function Router() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/profile" element={<Profile/>} />
-      <Route path="/login" element={<Login/>} />
-      <Route path='/signup' element={<Signup/> } />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
-}
-
-// function Home() {
-//   return <div>Welcome to the Home Page!</div>;
-// }
 
 function App() {
   useEffect(() => {
@@ -42,7 +27,19 @@ function App() {
     <SidebarProvider>
       <CartProvider>
         <BrowserRouter>
-          <Router />
+          {/* Sidebar outside Routes to make it persistent */}
+          <div className="flex">
+            <Sidebar />
+            <div className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+          </div>
         </BrowserRouter>
         <Toaster />
       </CartProvider>

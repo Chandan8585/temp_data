@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Sidebar from '../components/Sidebar';
+// import Sidebar from '../components/Sidebar';
 import CategoryFilter from '../components/CategoryFilter';
 import MenuList from '../components/MenuList';
 import CartItem from '../components/CartItem';
 import OrderSummary from '../components/OrderSummary';
 import PaymentMethods from '../components/PaymentMethods';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext2';
 import { useSidebar } from '../context/SidebarContext';
 import { fetchData } from '../lib/api';
 
@@ -54,7 +54,7 @@ const Home = () => {
       setMenuItems(productsData );
       setError(null);
     } catch (err) {
-    
+      console.error('Error fetching data:', err);
       setError('Failed to fetch data from API. Using local data instead.');
       // Fallback to local data in case of error
       // setCategories(categoriesData);
@@ -96,7 +96,7 @@ const Home = () => {
   return (
     <div className="min-h-screen flex flex-col sm:flex-row bg-secondary">
       {/* Sidebar */}
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       {/* Main Content */}
       <div className={`flex-1 p-4 transition-all duration-300 ${

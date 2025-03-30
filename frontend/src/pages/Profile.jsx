@@ -96,9 +96,14 @@ export default function Profile() {
       reader.readAsDataURL(file);
     }
   };
+  const profileStyle = {
+    padding: '5vh 15vw',
+  
+  };
 
   return (
-    <form className='px-[20vw]' onSubmit={handleFormSubmit}>
+    <div className="profile" style={profileStyle}>
+      <form className='mx-20' onSubmit={handleFormSubmit}>
       <div className="space-y-12 ">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base/7 font-semibold text-gray-900">Profile</h2>
@@ -324,5 +329,7 @@ export default function Profile() {
         </button>
       </div>
     </form>
+    </div>
+  
   )
 }

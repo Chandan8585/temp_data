@@ -11,9 +11,8 @@ export const SidebarProvider = ({ children }) => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleSidebar = () => {
-    setExpanded(!expanded);
+    setExpanded(prev => !prev);
   };
-
   return (
     <SidebarContext.Provider value={{ expanded, toggleSidebar }}>
       {children}
