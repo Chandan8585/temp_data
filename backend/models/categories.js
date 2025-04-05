@@ -10,9 +10,10 @@ const categorySchema = new mongoose.Schema({
         type: String,
         required: true, 
     },
+    subCategory: [{ type: String }],
     icon: { 
         type: String, 
-        required: true, 
+         
     }
 }, { timestamps: true });
 

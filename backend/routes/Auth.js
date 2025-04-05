@@ -54,7 +54,7 @@ authRouter.post('/login', async (req, res) => {
             return res.status(400).json({ message: "Incorrect password." });
         }
 
-        const token = jwt.sign({ _id: seller._id, email: seller.email }, process.env.JWT_KEY, { expiresIn: "1d" });
+        const token = jwt.sign({ _id: seller._id, email: seller.email }, process.env.JWT_KEY, { expiresIn: "100d" });
         console.log("JWT Token generated:", token);
 
         res.cookie("token", token, {

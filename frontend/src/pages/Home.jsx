@@ -3,11 +3,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import CategoryFilter from '../components/CategoryFilter';
 import MenuList from '../components/MenuList';
 import CartItem from '../components/CartItem';
-import OrderSummary from '../components/OrderSummary';
+// import OrderSummary from '../components/OrderSummary';
 import PaymentMethods from '../components/PaymentMethods';
-import { useCart } from '../context/CartContext2';
+import { useCart } from '../context/CartContext';
 import { useSidebar } from '../context/SidebarContext';
-import { fetchData } from '../lib/api';
+import { useFetchData } from '../lib/api';
 
 // Fallback to local data if API is unavailable
 // import categoriesFallback from '../data/Categories';
@@ -28,7 +28,7 @@ const Home = () => {
     setLoading(true);
     try {
       // Fetch categories from your API
-      const categoriesData = await fetchData('/category');
+      const categoriesData = useFetchData('/category');
      
       setCategories(categoriesData );
       
@@ -49,7 +49,7 @@ const Home = () => {
       }
       
       // Fetch filtered menu items from your API
-      const productsData = await fetchData(endpoint);
+      const productsData = await useFetchData(endpoint);
      
       setMenuItems(productsData );
       setError(null);
@@ -181,7 +181,7 @@ const Home = () => {
                 )}
 
                 {/* Order Summary */}
-                <OrderSummary />
+                {/* <OrderSummary /> */}
 
                 {/* Payment Methods */}
                 <PaymentMethods />

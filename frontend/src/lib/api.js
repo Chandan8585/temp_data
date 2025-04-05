@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+
 // Simple API utility for making requests to your API
 const API_BASE_URL = 'http://localhost:5001'; // Direct connection to your API
 
@@ -8,19 +10,23 @@ const handleApiError = async (response) => {
     throw new Error(`API Error: ${response.status} - ${errorText || response.statusText}`);
     
   }
-  return response;
+  return response.json();
 };
 
 // GET request helper
-export const fetchData = async (endpoint) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`);
-    await handleApiError(response);
-    return await response.json();
-  } catch (error) { 
-    console.error('API fetch error:', error);
-    throw error;
-  }
+export const useFetchData = (endpoint) => {
+  return useQuery({
+    queryKey: [endpoint],
+    queryFn: async () => {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`);
+      return handleApiError(response);
+    },
+    staleTime: 1000 * 60 * 5, 
+    cacheTime: 1000 * 60 * 10, 
+    onError: (error) => {
+      console.error(`Error fetching ${endpoint}:`, error);
+    },
+  });
 };
 export const fetchDataUsingBearerToken = async (endpoint, token) => {
   try {

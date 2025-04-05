@@ -1,1 +1,23 @@
 @import "tailwindcss";
+/* For mobile view, the sidebar is hidden by default */
+@media (max-width: 768px) {
+    #layoutSidenav_nav {
+      display: none;
+    }
+    .sidebar-mobile-toggle {
+      display: block;
+    }
+  }
+  
+  /* When the sidebar is open on mobile */
+  #layoutSidenav_nav.open {
+    display: block;
+  }
+  
+  /* For larger screens, sidebar should be always visible */
+  @media (min-width: 768px) {
+    #layoutSidenav_nav {
+      display: block;
+    }
+  }
+  

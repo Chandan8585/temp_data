@@ -3,6 +3,8 @@ import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Toaster } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 export default function Profile() {
   const [image, setImage] = useState(null); 
   const [preview, setPreview] = useState(null); 
@@ -33,7 +35,7 @@ export default function Profile() {
     const storedToken = localStorage.getItem("token");
     if (!storedToken) {
         console.log("No token found. Redirecting to login...");
-        navigate("/Login");
+        navigate("/login");
         return;
       }
       const fetchProfile = async()=>{
@@ -79,6 +81,7 @@ export default function Profile() {
       });
       // alert('Profile updated successfully!');
       setProfileData(response?.data);
+      toast.success("Profile Updated successfully")
     } catch (error) {
       console.error("Error updating profile:", error);
       alert('Failed to update profile.');
@@ -103,6 +106,7 @@ export default function Profile() {
 
   return (
     <div className="profile" style={profileStyle}>
+      <Toaster richColors position="top-center"/>
       <form className='mx-20' onSubmit={handleFormSubmit}>
       <div className="space-y-12 ">
         <div className="border-b border-gray-900/10 pb-12">

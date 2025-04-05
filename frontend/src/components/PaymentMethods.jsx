@@ -34,7 +34,7 @@ const PaymentMethods = () => {
       </div>
 
       <button 
-        className="w-full bg-primary hover:bg-purple-700 text-white font-medium py-3 rounded-lg mt-6 transition duration-200"
+        className="w-full bg-purple-700 hover:bg-purple-700 text-white  font-medium py-3 rounded-lg mt-6 transition duration-200"
         onClick={handleProcessTransaction}
       >
         Process transaction

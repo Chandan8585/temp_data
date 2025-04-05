@@ -1,0 +1,18 @@
+
+@media (max-width: 768px) {
+    .respo_form{
+        margin-left: 35%;
+       }
+    .form-container {
+      padding: 12px;
+    }
+  
+    .form-control {
+      font-size: 14px;
+      padding: 6px;
+    }
+  
+    .form-label {
+      font-size: 14px;
+    }
+  }
